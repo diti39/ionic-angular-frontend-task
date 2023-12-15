@@ -1,0 +1,51 @@
+
+<ion-toolbar>
+  <ion-buttons slot="secondary">
+    <ion-button>
+      <ion-icon name="contrast-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-buttons slot="primary">
+    <ion-button>
+      <mat-icon matBadge="1" matBadgeColor="warn">shopping_bag</mat-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-title>Category names</ion-title>
+</ion-toolbar>
+
+<ion-searchbar placeholder="Custom Placeholder for your search"></ion-searchbar>
+
+<ion-content color="light" *ngIf="data">
+  <ion-list [inset]="true">
+    <ion-item *ngFor="let category of data.categories">
+      <ion-label [routerLink]="['cardview']">{{ category.name }}</ion-label>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-label [routerLink]="['cardview']">Another category name</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label [routerLink]="['cardview']">Category name</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label [routerLink]="['cardview']">Another category name</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label [routerLink]="['cardview']">Another category name</ion-label>
+    </ion-item> -->
+  </ion-list>
+  
+  <div *ngIf="data">
+    <h2>{{ data.businessName }}</h2>
+    <p>NUIs: {{ data.nuis }}</p>
+  
+    <div *ngFor="let category of data.categories">
+      <h3>{{ category.name }}</h3>
+      <ul>
+        <li *ngFor="let product of category.products">
+          {{ product.name }} - {{ product.unitPrice | currency: 'Lek ' }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+</ion-content>
